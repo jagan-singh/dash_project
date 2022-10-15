@@ -9,7 +9,7 @@ app.layout = html.Div([
     dcc.Dropdown(
         id='dropdown',
         options=[{'label': i, 'value': i} for i in ['New York', 'California', 'Washington']],
-        value='LA'
+        value='New York'
     ),
     html.Div(id='display-value')
 ])
