@@ -13,9 +13,9 @@ url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
 download = requests.get(url).content
 df_us = pd.read_csv(io.StringIO(download.decode('utf-8')))
 
-url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"
-download = requests.get(url).content
-df_state = pd.read_csv(io.StringIO(download.decode('utf-8')))
+#url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"
+#download = requests.get(url).content
+#df_state = pd.read_csv(io.StringIO(download.decode('utf-8')))
 
 def covid_cases():
     fig = go.Figure([go.Scatter(x = df_us['date'], y = df_us['cases'], line = dict(color = 'firebrick', width = 4))])
