@@ -14,13 +14,17 @@ url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
 download = requests.get(url).content
 df_us = pd.read_csv(io.StringIO(download.decode('utf-8')))
 
+df_us['case_day'] = df_us['cases'].diff()
+df_us.loc[0, 'case_day'] = 1
+df_us['case_day'] =  df_us['case_day'].astype('int')
+
 url = "https://raw.githubusercontent.com/jagansingh93/covid_data/main/Weekly_United_States_COVID-19_Cases_and_Deaths_by_State.csv"
 download = requests.get(url).content
 df_state = pd.read_csv(io.StringIO(download.decode('utf-8')))
 df_state.loc[df_state.new_cases  < 0,'new_cases'] = df_state.loc[df_state.new_cases  < 0,'new_cases'].abs()
 
 def covid_cases():
-    fig = px.line(x = df_us['date'], y = df_us['cases'])
+    fig = px.line(x = df_us['date'], y = df_us['case_day'])
     fig.update_layout(title = 'COVID-19 cases in US', xaxis_title = 'Date', yaxis_title = 'Cases' )
     return fig
 
