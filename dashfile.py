@@ -10,9 +10,9 @@ import plotly.express as px
 from datetime import date, timedelta
 
 # importing data
-#url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
-#download = requests.get(url).content
-#df_us = pd.read_csv(io.StringIO(download.decode('utf-8')))
+url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
+download = requests.get(url).content
+df_us = pd.read_csv(io.StringIO(download.decode('utf-8')))
 
 url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"
 download = requests.get(url).content
@@ -85,14 +85,13 @@ states = {
 
 df_state['state_ab'] = df_state['state'].map(states)
 
-
 def covid_cases():
     fig = px.line(x = df_us['date'], y = df_us['cases'])
     fig.update_layout(title = 'COVID-19 cases in US', xaxis_title = 'Date', yaxis_title = 'Cases' )
     return fig
 
 def states_map():
-    fig = px.choropleth(df_state, color="cases", locationmode = 'USA-states', locations = 'state_ab', scope = 'usa')
+    fig = px.scatter_geo(df_state, size="cases", locationmode = 'USA-states', locations = 'state_ab', scope = 'usa')
     fig.update_layout(title = 'States map')
     return fig
 
@@ -112,10 +111,10 @@ html.H1(
             'color': colors['text']
         }
         ),
-        #dcc.Graph(id = 'line_plot', figure = covid_cases()),
+        dcc.Graph(id = 'line_plot', figure = covid_cases()),
         dcc.Graph(id = 'map', figure = states_map())
         ]
 )
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(port = 8052)
