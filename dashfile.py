@@ -9,9 +9,9 @@ import pandas as pd
 import plotly.express as px
 
 # importing data
-url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
-download = requests.get(url).content
-df_us = pd.read_csv(io.StringIO(download.decode('utf-8')))
+#url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
+#download = requests.get(url).content
+#df_us = pd.read_csv(io.StringIO(download.decode('utf-8')))
 
 url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"
 download = requests.get(url).content
@@ -110,10 +110,10 @@ html.H1(
             'textAlign': 'center',
             'color': colors['text']
         }
-    ),
-        dcc.Graph(id = 'line_plot', figure = covid_cases()),
-    dcc.Graph(id = 'map', figure = states_map())
-    ]
+        ),
+        #dcc.Graph(id = 'line_plot', figure = covid_cases()),
+        dcc.Graph(id = 'map', figure = states_map())
+        ]
 )
 
 if __name__ == '__main__':
