@@ -7,6 +7,7 @@ from dash import html
 from dash import dcc
 import pandas as pd
 import plotly.express as px
+from datetime import date, timedelta
 
 # importing data
 #url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
