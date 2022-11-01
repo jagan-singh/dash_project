@@ -3,8 +3,7 @@ import os
 import dash
 import requests
 import io
-from dash import html
-from dash import dcc
+from dash import Dash, dcc, html, Input, Output, callback
 import pandas as pd
 import plotly.express as px
 from datetime import date, timedelta
@@ -34,13 +33,39 @@ def states_map():
     return fig
 
 
-dash.register_page(__name__)
+app = dash.Dash(__name__)
+server = app.server
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content')
+])
 
-layout = html.Div( children = [
-html.H1(
-        children='Covid Cases in US',
-        ),
-        dcc.Graph(id = 'line_plot', figure = covid_cases()),
-        dcc.Graph(id = 'map', figure = states_map())
-        ]
-)
+index_page = html.Div([
+    html.H1('COVID DASHBOARD'),
+    dcc.Link('New Covid cases US', href='/page-1'),
+    html.Br(),
+    dcc.Link('State wise new cases', href='/page-2'),
+])
+
+page_1_layout = html.Div([
+    html.H1('New Covid cases US'),
+    dcc.Graph(id = 'line_plot', figure = covid_cases())
+])
+
+page_2_layout = html.Div([
+    html.H1('New Covid cases US'),
+    dcc.Graph(id = 'map', figure = states_map())
+])
+
+@callback(Output('page-content', 'children'),
+              [Input('url', 'pathname')])
+def display_page(pathname):
+    if pathname == '/page-1':
+        return page_1_layout
+    elif pathname == '/page-2':
+        return page_2_layout
+    else:
+        return index_page
+
+if __name__ == '__main__':
+    app.run_server()
