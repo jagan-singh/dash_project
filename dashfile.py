@@ -45,7 +45,7 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
-index_page = html.Div([
+home_page = html.Div([
     html.H1('COVID DASHBOARD'),
     dcc.Dropdown(list(df_us.drop(columns = ['date']).columns), 'cases', id= 'dropdown'),
     dcc.Graph(id = 'graph'),
@@ -71,7 +71,7 @@ def display_page(pathname):
     if pathname == '/state_wise':
         return state_wise_layout
     else:
-        return index_page
+        return home_page
 
 if __name__ == '__main__':
     app.run_server()
