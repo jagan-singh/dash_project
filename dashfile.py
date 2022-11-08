@@ -29,7 +29,7 @@ df_state['new_cases'] = df_state['new_cases'].abs()
 
 def covid_cases(name):
     fig = px.line(x = df_us['date'], y = df_us[name])
-    fig.update_layout(title = 'COVID-19 cases in US')
+    fig.update_layout(title = 'COVID-19 cases in US', x = 'date', y = name)
     return fig
 
 def states_map():
