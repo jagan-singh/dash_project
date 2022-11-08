@@ -29,7 +29,7 @@ df_state['new_cases'] = df_state['new_cases'].abs()
 
 def covid_cases(name):
     fig = px.line(x = df_us['date'], y = df_us[name])
-    fig.update_layout(title = 'COVID-19 cases in US', x = 'date', y = name)
+    fig.update_layout(title = 'COVID-19 cases in US')
     return fig
 
 def states_map():
@@ -74,4 +74,4 @@ def display_page(pathname):
         return home_page
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(port = 8053)
