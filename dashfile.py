@@ -50,7 +50,7 @@ home_page = html.Div([
     dcc.Dropdown(list(df_us.drop(columns = ['date']).columns), 'cases', id= 'dropdown'),
     dcc.Graph(id = 'graph'),
     html.Br(),
-    dcc.Link('State wise new cases', href='/state_wise')
+    dcc.Link('State wise new cases', href='/state_wise', id = 'button')
 ])
 
 @app.callback(
@@ -74,4 +74,4 @@ def display_page(pathname):
         return home_page
 
 if __name__ == '__main__':
-    app.run_server(port = 8053)
+    app.run_server(port = 1112)
