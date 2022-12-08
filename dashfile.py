@@ -77,6 +77,9 @@ def update_output(value):
 
 state_wise_layout = html.Div([
     html.H2('New Covid cases US'),
+    dcc.Link('Home', href='/home_page', id = 'button'),
+    html.Br(),
+    html.Br(),
     dcc.Dropdown(list(df_state['state'].unique()), 'NY', id= 'state_dropdown'),
     html.Div(children = [
     dcc.Graph(id = 'graph2', style = {'display': 'inline-block'}),
@@ -109,4 +112,4 @@ def display_page(pathname):
         return home_page
 
 if __name__ == '__main__':
-    app.run_server(port = 1112)
+    app.run_server(port = 1111)

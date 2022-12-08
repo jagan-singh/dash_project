@@ -23,7 +23,7 @@ body {
   color: white;
   font-weight: bold;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 30px;
 }
 #button:hover {
   background-color: orange;
